@@ -1,16 +1,12 @@
 <script setup lang="ts">
-import SectionCard from '../../components/ui/SectionCard.vue'
+import Collapsible from '../../components/ui/Collapsible.vue'
 import { theory } from './content'
 </script>
 
 <template>
-  <SectionCard title="Teoría" badge="2">
-    <ul>
+  <Collapsible title="Teoría en puntos" icon="📌">
+    <ul class="list-disc space-y-1 pl-5">
       <li v-for="point in theory" :key="point">{{ point }}</li>
     </ul>
-  </SectionCard>
+  </Collapsible>
 </template>
-
-<style scoped>
-ul { margin: 0; padding-left: 20px; display: grid; gap: 4px; }
-</style>

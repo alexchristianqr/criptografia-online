@@ -1,49 +1,14 @@
-:root {
-  --bg: #f6f7fb;
-  --card: #ffffff;
-  --text: #1c2030;
-  --muted: #5f667d;
-  --border: #dfe3ee;
-  --accent: #4f46e5;
-  --accent-soft: #e8e7fd;
-  --ok: #0f766e;
-  --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+@import 'tailwindcss';
+
+@theme {
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-500: #6366f1;
+  --color-brand-600: #4f46e5;
+  --color-brand-700: #4338ca;
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0f1220;
-    --card: #181c2e;
-    --text: #e8eaf4;
-    --muted: #9aa1bb;
-    --border: #2a3050;
-    --accent: #8b87ff;
-    --accent-soft: #29285a;
-    --ok: #5eead4;
-  }
-}
-* { box-sizing: border-box; }
+
 body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
-  line-height: 1.6;
+  @apply bg-slate-50 text-slate-800 antialiased dark:bg-slate-950 dark:text-slate-200;
 }
-main { max-width: 860px; margin: 0 auto; padding: 0 16px 48px; display: grid; gap: 20px; }
-h1, h2, h3 { line-height: 1.25; margin: 0 0 8px; }
-p { margin: 0 0 8px; }
-code, .mono { font-family: var(--mono); }
-code { background: var(--accent-soft); padding: 1px 6px; border-radius: 4px; }
-label { display: grid; gap: 4px; font-size: 0.9rem; color: var(--muted); }
-textarea, input, select, button {
-  font: inherit; color: var(--text); background: var(--bg);
-  border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px;
-}
-textarea { width: 100%; resize: vertical; font-family: var(--mono); }
-button { cursor: pointer; }
-button:hover { border-color: var(--accent); }
-button.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-table { border-collapse: collapse; width: 100%; font-family: var(--mono); font-size: 0.9rem; }
-th, td { border-bottom: 1px solid var(--border); padding: 6px 8px; text-align: center; }
-th { color: var(--muted); font-weight: 600; }
-.table-wrap { overflow-x: auto; }

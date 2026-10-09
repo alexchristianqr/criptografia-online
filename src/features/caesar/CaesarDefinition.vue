@@ -1,16 +1,12 @@
 <script setup lang="ts">
-import SectionCard from '../../components/ui/SectionCard.vue'
+import Collapsible from '../../components/ui/Collapsible.vue'
 import { definition } from './content'
 </script>
 
 <template>
-  <SectionCard title="Definición" badge="1">
+  <Collapsible title="Definición" icon="📖">
     <p>{{ definition.summary }}</p>
-    <p><code>{{ definition.encrypt }}</code> &nbsp; <code>{{ definition.decrypt }}</code></p>
-    <p class="legend">{{ definition.legend }}</p>
-  </SectionCard>
+    <p class="font-mono"><code class="rounded bg-brand-50 px-2 py-0.5 dark:bg-brand-600/20">{{ definition.encrypt }}</code> <code class="rounded bg-brand-50 px-2 py-0.5 dark:bg-brand-600/20">{{ definition.decrypt }}</code></p>
+    <p class="text-xs text-slate-500">{{ definition.legend }}</p>
+  </Collapsible>
 </template>
-
-<style scoped>
-.legend { color: var(--muted); font-size: 0.9rem; }
-</style>
