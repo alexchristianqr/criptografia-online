@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import AppHeader from './components/layout/AppHeader.vue'
+import CaesarPage from './features/caesar/CaesarPage.vue'
 </script>
 
 <template>
-  <HelloWorld msg="¡Hola Mundo!" />
+  <AppHeader />
+  <CaesarPage />
 </template>
