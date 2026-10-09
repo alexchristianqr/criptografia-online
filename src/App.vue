@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
+import ThemeToggle from './components/ui/ThemeToggle.vue'
 import AppSidebar from './components/layout/AppSidebar.vue'
 import { modules } from './courses'
 import { useHashRoute } from './composables/useHashRoute'
@@ -17,10 +18,11 @@ watch(current, () => (menuOpen.value = false))
     <div class="flex min-w-0 flex-1 flex-col">
       <header class="sticky top-0 z-10 flex items-center gap-3 border-b border-slate-200 bg-white/80 px-4 py-3 backdrop-blur dark:border-slate-800 dark:bg-slate-900/80">
         <button class="rounded-md p-1.5 hover:bg-slate-100 lg:hidden dark:hover:bg-slate-800" aria-label="Abrir menú" @click="menuOpen = true">☰</button>
-        <div>
+        <div class="flex-1">
           <p class="text-xs font-medium uppercase tracking-wide text-brand-600 dark:text-brand-500">Curso · Criptografía clásica</p>
           <h1 class="text-lg font-semibold leading-tight">{{ active.title }}</h1>
         </div>
+        <ThemeToggle />
       </header>
 
       <main class="mx-auto w-full max-w-5xl flex-1 p-4 sm:p-6">
