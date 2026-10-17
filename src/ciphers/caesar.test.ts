@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { ALPHABETS, caesarDecrypt, caesarEncrypt } from './caesar'
+import { ALPHABETS, caesarDecrypt, caesarEncrypt, parseShift } from './caesar'
 
 const es = ALPHABETS.es.letters
 const en = ALPHABETS.en.letters
@@ -18,5 +18,21 @@ describe('caesar', () => {
   it('k negativo y mayor que n', () => {
     expect(caesarEncrypt('A', -1, en)).toBe('Z')
     expect(caesarEncrypt('A', 29, en)).toBe('D')
+  })
+})
+
+describe('parseShift', () => {
+  it('acepta enteros, negativos y mayores que n', () => {
+    expect(parseShift('3')).toEqual({ ok: true, value: 3 })
+    expect(parseShift(' -5 ')).toEqual({ ok: true, value: -5 })
+    expect(parseShift('29')).toEqual({ ok: true, value: 29 })
+  })
+  it('rechaza vacío, decimales y texto', () => {
+    expect(parseShift('').ok).toBe(false)
+    expect(parseShift('2.5').ok).toBe(false)
+    expect(parseShift('abc').ok).toBe(false)
+  })
+  it('k = 29 en español equivale a k = 2', () => {
+    expect(caesarEncrypt('HOLA', 29, es)).toBe(caesarEncrypt('HOLA', 2, es))
   })
 })

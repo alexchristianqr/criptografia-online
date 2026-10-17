@@ -49,3 +49,15 @@ export function caesarSteps(text: string, shift: number, alphabet: string): Caes
     return [{ from: alphabet[fromIndex]!, fromIndex, toIndex, to: alphabet[toIndex]! }]
   })
 }
+
+export type ParseShiftResult = { ok: true; value: number } | { ok: false; error: string }
+
+/** Interpreta la clave k escrita por el usuario: cualquier entero (también negativo o mayor que n). */
+export function parseShift(input: string): ParseShiftResult {
+  const t = input.trim()
+  if (t === '') return { ok: false, error: 'Escribe un número entero para k.' }
+  if (!/^[+-]?\d+$/.test(t)) return { ok: false, error: `«${t}» no es un número entero.` }
+  const value = Number(t)
+  if (!Number.isSafeInteger(value)) return { ok: false, error: 'El número es demasiado grande.' }
+  return { ok: true, value }
+}

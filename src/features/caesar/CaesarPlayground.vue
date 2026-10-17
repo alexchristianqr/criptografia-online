@@ -5,7 +5,7 @@ import CaesarWheel from '../../components/ui/CaesarWheel.vue'
 import { ALPHABETS } from '../../ciphers/caesar'
 import { useCaesar } from './useCaesar'
 
-const { text, shift, mode, alphabetKey, alphabet, output, steps, setShift, swap } = useCaesar()
+const { text, shift, mode, alphabetKey, alphabet, output, steps, setShift, swap, kText, kError, kNote, typeShift } = useCaesar()
 
 const signed = computed(() => (mode.value === 'cifrar' ? shift.value : -shift.value))
 const flow = computed(() => steps.value.slice(0, 16))
@@ -75,6 +75,24 @@ const badge = 'grid size-7 shrink-0 place-items-center rounded-full text-sm font
             <input id="k" type="range" min="0" :max="alphabet.length - 1" :value="shift" class="flex-1 accent-amber-500" @input="setShift(+($event.target as HTMLInputElement).value)" />
             <button :class="btn" aria-label="Sumar 1" @click="setShift(shift + 1)">+</button>
           </div>
+          <label class="mt-3 block text-sm font-semibold" for="k-input">
+            O escribe <span class="font-mono">k</span>
+            <span class="font-normal text-slate-500">(cualquier entero: también negativo o mayor que {{ alphabet.length - 1 }})</span>
+          </label>
+          <input
+            id="k-input"
+            :value="kText"
+            type="text"
+            inputmode="numeric"
+            autocomplete="off"
+            spellcheck="false"
+            :aria-invalid="kError !== ''"
+            class="mt-1 w-full rounded-xl border-2 bg-white p-2.5 font-mono text-base outline-none transition focus:ring-4 dark:bg-slate-950"
+            :class="kError ? 'border-rose-400 focus:border-rose-500 focus:ring-rose-500/20' : 'border-amber-300 focus:border-amber-500 focus:ring-amber-500/20 dark:border-amber-700'"
+            @input="typeShift(($event.target as HTMLInputElement).value)"
+          />
+          <p v-if="kError" class="mt-1 text-sm text-rose-600 dark:text-rose-400" role="alert">{{ kError }} Se sigue usando k = {{ shift }}.</p>
+          <p v-else-if="kNote" class="mt-1 text-sm text-amber-800 dark:text-amber-200">{{ kNote }}</p>
           <p class="mt-2 text-sm text-amber-800 dark:text-amber-200">
             Cada letra se desplaza <b>{{ shift }}</b> {{ shift === 1 ? 'lugar' : 'lugares' }}
             {{ encrypting ? 'hacia adelante' : 'hacia atrás' }} en el alfabeto.
