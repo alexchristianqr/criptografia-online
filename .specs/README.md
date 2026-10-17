@@ -20,10 +20,14 @@ Aquí vive toda la documentación que define el producto. **Se escribe antes de 
 - Estados de una spec: `borrador` → `aprobada` → `implementada`.
 - Los criterios de aceptación son verificables y numerados (`CA-1`, `CA-2`...); los tests los referencian.
 - Cambios de comportamiento: primero la spec, luego el código.
+- Todo módulo cumple el principio de *entrada a demanda* (ver `product.md`).
 
 ## Features
 
 | Feature | Estado |
 |---|---|
-| [caesar](features/caesar/spec.md) | implementada |
-| [permutation](features/permutation/spec.md) | borrador |
+| [caesar](features/caesar/spec.md) | implementada; entrada a demanda implementada |
+| [permutation](features/permutation/spec.md) | implementada |
+| [playfair-decrypt](features/playfair-decrypt/spec.md) | implementada |
+| [hill](features/hill/spec.md) | implementada |
+| [series-transposition](features/series-transposition/spec.md) | implementada |
