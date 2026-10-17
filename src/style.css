@@ -16,5 +16,34 @@ body {
   @apply bg-slate-50 text-slate-800 antialiased dark:bg-slate-950 dark:text-slate-200;
 }
 
-html { color-scheme: light; }
-html.dark { color-scheme: dark; }
+html {
+  color-scheme: light;
+}
+html.dark {
+  color-scheme: dark;
+}
+
+/* Controles compartidos por los laboratorios de sustitución por bloques. */
+@layer components {
+  .cipher-lab {
+    @apply overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900;
+  }
+  .lab-label {
+    @apply flex items-center gap-3 font-semibold;
+  }
+  .lab-number {
+    @apply grid size-7 shrink-0 place-items-center rounded-full text-sm font-bold text-white;
+  }
+  .lab-field {
+    @apply w-full rounded-xl border-2 border-slate-300 bg-white p-3 font-mono text-base outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 dark:border-slate-700 dark:bg-slate-950;
+  }
+  .lab-button {
+    @apply rounded-lg border border-indigo-300 px-3 py-1.5 text-sm font-medium text-indigo-700 transition hover:bg-indigo-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 disabled:cursor-not-allowed disabled:opacity-40 dark:border-indigo-700 dark:text-indigo-300 dark:hover:bg-indigo-900/40;
+  }
+  .lab-error {
+    @apply rounded-xl border border-rose-300 bg-rose-50 p-3 text-sm text-rose-800 dark:border-rose-800 dark:bg-rose-500/10 dark:text-rose-200;
+  }
+  .lab-block {
+    @apply rounded-xl border-2 border-slate-200 px-3 py-2 font-mono text-sm transition hover:border-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 aria-pressed:border-indigo-500 aria-pressed:bg-indigo-50 dark:border-slate-700 dark:aria-pressed:border-indigo-400 dark:aria-pressed:bg-indigo-500/20;
+  }
+}
