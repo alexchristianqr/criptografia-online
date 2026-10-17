@@ -16,6 +16,11 @@ export const modules: CourseModule[] = [
     component: defineAsyncComponent(() => import('./features/caesar/CaesarPage.vue')),
   },
   { id: 'vigenere', title: 'Vigenère', subtitle: 'Sustitución polialfabética' },
-  { id: 'permutacion', title: 'Permutación', subtitle: 'Transposición de posiciones' },
+  {
+    id: 'permutacion',
+    title: 'Permutación',
+    subtitle: 'Transposición de posiciones',
+    component: defineAsyncComponent(() => import('./features/permutation/PermutationPage.vue')),
+  },
   { id: 'atbash', title: 'Atbash', subtitle: 'Alfabeto invertido' },
 ]
