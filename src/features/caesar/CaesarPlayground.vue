@@ -10,7 +10,13 @@ const { text, shift, mode, alphabetKey, alphabet, output, steps, setShift, swap 
 const signed = computed(() => (mode.value === 'cifrar' ? shift.value : -shift.value))
 const flow = computed(() => steps.value.slice(0, 16))
 const used = computed(() => [...new Set(steps.value.map((s) => s.from))])
-const hovered = ref<string | null>(null)
+const hoverIdx = ref<number | null>(null)
+const pinnedIdx = ref(0)
+const curIdx = computed(() => Math.min(hoverIdx.value ?? pinnedIdx.value, flow.value.length - 1))
+const cur = computed(() => flow.value[curIdx.value])
+const hovered = computed(() => cur.value?.from ?? null)
+const rawIdx = computed(() => (cur.value ? cur.value.fromIndex + signed.value : 0))
+const wrapped = computed(() => !!cur.value && rawIdx.value !== cur.value.toIndex)
 const encrypting = computed(() => mode.value === 'cifrar')
 
 const copied = ref(false)
@@ -36,7 +42,7 @@ const badge = 'grid size-7 shrink-0 place-items-center rounded-full text-sm font
     <div class="flex flex-wrap items-center justify-between gap-3 bg-gradient-to-r from-brand-600 via-violet-600 to-fuchsia-600 px-4 py-3 text-white sm:px-6">
       <div>
         <h2 class="text-xl font-semibold">🧪 Laboratorio</h2>
-        <p class="text-sm text-white/80">Sigue los 4 pasos: elige, gira la clave, escribe y observa.</p>
+        <p class="text-sm text-white/80">Sigue los pasos 1 → 4 y toca cualquier letra para ver cómo se transforma.</p>
       </div>
       <div class="flex flex-wrap items-center gap-3">
         <div class="inline-flex rounded-lg bg-black/20 p-1" role="group" aria-label="Modo">
@@ -87,7 +93,7 @@ const badge = 'grid size-7 shrink-0 place-items-center rounded-full text-sm font
         <div class="flex items-center justify-center gap-3 text-sm text-slate-500">
           <span class="h-px flex-1 bg-gradient-to-r from-transparent to-slate-300 dark:to-slate-700" />
           <button class="rounded-full border border-violet-300 px-3 py-1 font-medium text-violet-700 transition hover:bg-violet-100 dark:border-violet-700 dark:text-violet-300 dark:hover:bg-violet-900/40" title="Usar salida como entrada" @click="swap">
-            ⇅ {{ encrypting ? 'cifrar' : 'descifrar' }} (k={{ shift }}) · invertir
+            ⇅ Pasar el resultado a la entrada y {{ encrypting ? 'descifrar' : 'cifrar' }}
           </button>
           <span class="h-px flex-1 bg-gradient-to-l from-transparent to-slate-300 dark:to-slate-700" />
         </div>
@@ -110,7 +116,7 @@ const badge = 'grid size-7 shrink-0 place-items-center rounded-full text-sm font
         <div class="mb-2 flex items-center gap-3 font-semibold">
           <span :class="[badge, 'bg-violet-500']">4</span> Observa la rueda
         </div>
-        <CaesarWheel :alphabet="alphabet" :shift="signed" :highlight="used" :active="hovered" />
+        <CaesarWheel :alphabet="alphabet" :shift="signed" :highlight="used" :active="hovered" :active-to="cur?.to" />
         <div class="mt-2 flex justify-center gap-4 text-xs">
           <span class="flex items-center gap-1"><i class="size-3 rounded-full bg-sky-500" /> entrada</span>
           <span class="flex items-center gap-1"><i class="size-3 rounded-full bg-emerald-500" /> salida (anillo que gira)</span>
@@ -126,16 +132,38 @@ const badge = 'grid size-7 shrink-0 place-items-center rounded-full text-sm font
         <p class="mb-3 text-sm text-slate-500">
           <span class="font-semibold text-sky-600 dark:text-sky-400">entrada</span> →
           <span class="font-semibold text-amber-600 dark:text-amber-400">posición {{ signed >= 0 ? '+' : '−' }} clave (mod {{ alphabet.length }})</span> →
-          <span class="font-semibold text-emerald-600 dark:text-emerald-400">salida</span>. Pasa el cursor sobre una letra para verla en la rueda.
+          <span class="font-semibold text-emerald-600 dark:text-emerald-400">salida</span>. Toca una letra para verla en la rueda.
         </p>
+        <div v-if="cur" class="mb-4 rounded-xl border-2 border-amber-300 bg-amber-50 p-4 dark:border-amber-700 dark:bg-amber-500/10">
+          <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-amber-700 dark:text-amber-300">Explicación de la letra seleccionada</p>
+          <div class="flex flex-wrap items-center gap-2 font-mono text-lg">
+            <span class="rounded-lg bg-sky-500 px-3 py-1 font-bold text-white">{{ cur.from }}</span>
+            <span class="text-sm text-slate-500">posición</span>
+            <span class="rounded-lg bg-sky-100 px-2 py-1 font-bold text-sky-700 dark:bg-sky-500/20 dark:text-sky-200">{{ cur.fromIndex }}</span>
+            <span class="font-bold text-amber-600">{{ signed >= 0 ? '+' : '−' }} {{ Math.abs(signed) }}</span>
+            <span>=</span>
+            <span class="rounded-lg bg-amber-200 px-2 py-1 font-bold text-amber-800 dark:bg-amber-500/30 dark:text-amber-100">{{ rawIdx }}</span>
+            <template v-if="wrapped">
+              <span class="text-sm text-slate-500">→ {{ rawIdx < 0 ? 'se sale por el inicio' : 'se pasa del final' }}, damos la vuelta:</span>
+              <span class="rounded-lg bg-amber-200 px-2 py-1 font-bold text-amber-800 dark:bg-amber-500/30 dark:text-amber-100">{{ rawIdx }} {{ rawIdx < 0 ? '+' : '−' }} {{ alphabet.length }} = {{ cur.toIndex }}</span>
+            </template>
+            <span>→</span>
+            <span class="rounded-lg bg-emerald-500 px-3 py-1 font-bold text-white">{{ cur.to }}</span>
+          </div>
+          <p class="mt-2 text-sm text-amber-900 dark:text-amber-100">
+            En la rueda: busca <b class="text-sky-600 dark:text-sky-300">{{ cur.from }}</b> en el anillo azul; la letra justo debajo, en el anillo verde, es <b class="text-emerald-600 dark:text-emerald-300">{{ cur.to }}</b>.
+            <span class="text-slate-500">(Las posiciones empiezan en 0: A = 0.)</span>
+          </p>
+        </div>
         <div class="flex flex-wrap gap-2">
           <div
             v-for="(s, i) in flow"
             :key="i"
-            class="w-14 cursor-default overflow-hidden rounded-xl border-2 text-center font-mono shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-            :class="hovered === s.from ? 'border-amber-400' : 'border-slate-200 dark:border-slate-700'"
-            @mouseenter="hovered = s.from"
-            @mouseleave="hovered = null"
+            class="w-14 cursor-pointer overflow-hidden rounded-xl border-2 text-center font-mono shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+            :class="curIdx === i ? 'border-amber-400 ring-4 ring-amber-300/50' : 'border-slate-200 dark:border-slate-700'"
+            @mouseenter="hoverIdx = i"
+            @mouseleave="hoverIdx = null"
+            @click="pinnedIdx = i"
           >
             <div class="bg-sky-500 py-1 text-lg font-bold text-white">{{ s.from }}</div>
             <div class="bg-sky-50 py-0.5 text-xs text-sky-700 dark:bg-sky-500/10 dark:text-sky-300">pos {{ s.fromIndex }}</div>

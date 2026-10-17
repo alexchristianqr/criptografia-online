@@ -2,11 +2,12 @@
 import { computed } from 'vue'
 
 // Rueda de dos anillos: el exterior es la entrada, el interior (que gira k posiciones) es la salida.
-const props = defineProps<{ alphabet: string; shift: number; highlight?: string[]; active?: string | null }>()
+const props = defineProps<{ alphabet: string; shift: number; highlight?: string[]; active?: string | null; activeTo?: string | null }>()
 
 const letters = computed(() => Array.from(props.alphabet))
 const step = computed(() => 360 / letters.value.length)
 const rotation = computed(() => -props.shift * step.value)
+const activeIdx = computed(() => (props.active ? letters.value.indexOf(props.active) : -1))
 const isOn = (l: string) => props.highlight?.includes(l)
 
 const SIZE = 340
@@ -27,6 +28,14 @@ const pos = (i: number, r: number) => {
     <circle :cx="C" :cy="C" :r="R_IN + 17" class="fill-emerald-50 stroke-emerald-300 dark:fill-emerald-950/60 dark:stroke-emerald-700" />
     <circle :cx="C" :cy="C" :r="R_IN - 17" class="fill-white stroke-emerald-300 dark:fill-slate-900 dark:stroke-emerald-700" />
 
+    <!-- conector de la letra activa -->
+    <line
+      v-if="activeIdx >= 0"
+      :x1="pos(activeIdx, R_OUT - 12).x" :y1="pos(activeIdx, R_OUT - 12).y"
+      :x2="pos(activeIdx, R_IN + 12).x" :y2="pos(activeIdx, R_IN + 12).y"
+      class="stroke-amber-400" stroke-width="3" stroke-dasharray="4 3" stroke-linecap="round"
+    />
+
     <!-- anillo exterior: entrada -->
     <g font-family="ui-monospace, Menlo, monospace" font-size="13" text-anchor="middle" dominant-baseline="central">
       <g v-for="(l, i) in letters" :key="'o' + l" :transform="`translate(${pos(i, R_OUT).x} ${pos(i, R_OUT).y})`">
@@ -41,7 +50,9 @@ const pos = (i: number, r: number) => {
       <!-- anillo interior: salida, rota con la clave -->
       <g class="transition-transform duration-500 ease-out" :style="{ transform: `rotate(${rotation}deg)`, transformOrigin: `${C}px ${C}px` }">
         <g v-for="(l, j) in letters" :key="'i' + l" :transform="`translate(${pos(j, R_IN).x} ${pos(j, R_IN).y})`">
+          <circle v-if="activeTo === l" r="11" class="fill-emerald-500" :style="{ transform: `rotate(${-rotation}deg)`, transformBox: 'fill-box', transformOrigin: 'center' }" />
           <text
+            :class="activeTo === l ? '!fill-white font-bold' : ''"
             class="fill-emerald-800 transition-transform duration-500 ease-out dark:fill-emerald-200"
             font-size="12"
             :style="{ transform: `rotate(${-rotation}deg)`, transformBox: 'fill-box', transformOrigin: 'center' }"
