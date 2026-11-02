@@ -33,10 +33,12 @@ describe('permutation', () => {
 });
 
 describe('convención del laboratorio de la universidad', () => {
-  const k = [1, 3, 4, 2, 0] // 2 4 5 3 1
-  it('MANOS con clave 2 4 5 3 1 da AOSNM', () => expect(permutationEncrypt('MANOS', k)).toBe('AOSNM'))
-  it('AOSNM se descifra a MANOS', () => expect(permutationDecrypt('AOSNM', k)).toBe('MANOS'))
-})
+  const k = [1, 3, 4, 2, 0]; // 2 4 5 3 1
+  it('MANOS con clave 2 4 5 3 1 da AOSNM', () =>
+    expect(permutationEncrypt('MANOS', k)).toBe('AOSNM'));
+  it('AOSNM se descifra a MANOS', () =>
+    expect(permutationDecrypt('AOSNM', k)).toBe('MANOS'));
+});
 
 describe('parseKey', () => {
   it('acepta espacios y comas (base 1)', () => {
