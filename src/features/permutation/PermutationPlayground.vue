@@ -153,11 +153,11 @@ const badge =
         class="space-y-4 rounded-xl border border-amber-200 bg-amber-50 p-4 dark:border-amber-800/60 dark:bg-amber-500/10"
       >
         <div class="flex items-center gap-3">
-          <span :class="[badge, 'bg-amber-500']">1</span>
+          <span :class="[badge, 'bg-amber-700']">1</span>
           <label for="m" class="flex-1 font-semibold"
             >Tamaño del bloque <span class="font-mono">m</span></label
           >
-          <span class="font-mono text-3xl font-black text-amber-500">{{
+          <span class="font-mono text-3xl font-black text-amber-700 dark:text-amber-400">{{
             m
           }}</span>
         </div>
@@ -173,14 +173,14 @@ const badge =
         <div>
           <p class="mb-1 font-semibold">
             Arma la clave
-            <span class="text-sm font-normal text-slate-500"
+            <span class="text-sm font-normal text-slate-600 dark:text-slate-400"
               >(toca dos casillas para intercambiarlas)</span
             >
           </p>
           <div class="flex flex-wrap gap-2">
             <div v-for="(to, i) in key" :key="i" class="text-center">
               <div
-                class="mb-0.5 font-mono text-xs text-sky-600 dark:text-sky-400"
+                class="mb-0.5 font-mono text-xs text-sky-700 dark:text-sky-400"
               >
                 posición {{ i + 1 }}
               </div>
@@ -188,7 +188,7 @@ const badge =
                 class="grid size-12 place-items-center rounded-xl border-2 font-mono text-xl font-bold transition active:scale-95"
                 :class="
                   picked === i
-                    ? 'scale-110 border-amber-500 bg-amber-400 text-white shadow-lg'
+                    ? 'scale-110 border-amber-500 bg-amber-400 text-slate-900 shadow-lg'
                     : 'border-amber-300 bg-white text-amber-700 hover:border-amber-500 dark:border-amber-700 dark:bg-slate-900 dark:text-amber-300'
                 "
                 :aria-label="`La posición ${i + 1} del resultado toma la letra ${to + 1}`"
@@ -196,7 +196,7 @@ const badge =
               >
                 {{ to + 1 }}
               </button>
-              <div class="mt-0.5 text-xs text-slate-500">← toma la letra</div>
+              <div class="mt-0.5 text-xs text-slate-600 dark:text-slate-400">← toma la letra</div>
             </div>
           </div>
           <KeyInput v-model="key" class="mt-3" />
@@ -223,7 +223,7 @@ const badge =
       <div class="space-y-4">
         <label class="block">
           <span class="mb-1 flex items-center gap-3 font-semibold">
-            <span :class="[badge, 'bg-sky-500']">2</span> Escribe ·
+            <span :class="[badge, 'bg-sky-700']">2</span> Escribe ·
             {{ encrypting ? 'texto plano' : 'texto cifrado' }}
           </span>
           <textarea
@@ -236,7 +236,7 @@ const badge =
               'border-sky-300 focus:border-sky-500 focus:ring-sky-500/20 dark:border-sky-800',
             ]"
           />
-          <span class="mt-1 block text-xs text-slate-500"
+          <span class="mt-1 block text-xs text-slate-600 dark:text-slate-400"
             >Se ignoran espacios y signos; el último bloque se completa con
             X.</span
           >
@@ -252,7 +252,7 @@ const badge =
         </div>
         <label class="block">
           <span class="mb-1 flex items-center gap-3 font-semibold">
-            <span :class="[badge, 'bg-emerald-500']">3</span>
+            <span :class="[badge, 'bg-emerald-700']">3</span>
             <span class="flex-1"
               >Resultado ·
               {{ encrypting ? 'texto cifrado' : 'texto plano' }}</span
@@ -284,16 +284,16 @@ const badge =
       class="border-t border-slate-200 p-4 sm:p-6 dark:border-slate-800"
     >
       <h3 class="mb-1 flex items-center gap-3 font-semibold">
-        <span :class="[badge, 'bg-violet-500']">4</span> Mira cómo viaja cada
+        <span :class="[badge, 'bg-violet-600']">4</span> Mira cómo viaja cada
         letra
       </h3>
-      <p class="mb-4 text-sm text-slate-500">
+      <p class="mb-4 text-sm text-slate-600 dark:text-slate-400">
         Bloque <b>{{ curBlock + 1 }}</b> de {{ blocks.length }}. Cada letra
-        <span class="font-semibold text-sky-600 dark:text-sky-400"
+        <span class="font-semibold text-sky-700 dark:text-sky-400"
           >de arriba</span
         >
         baja por su línea de color hasta su nueva posición
-        <span class="font-semibold text-emerald-600 dark:text-emerald-400"
+        <span class="font-semibold text-emerald-700 dark:text-emerald-400"
           >abajo</span
         >. Toca otro bloque para cambiarlo.
       </p>
@@ -410,18 +410,18 @@ const badge =
       </div>
       <p v-if="activePos !== null" class="mt-2 text-center text-sm">
         La
-        <b class="text-sky-600 dark:text-sky-400">{{ cur.input[activePos] }}</b>
+        <b class="text-sky-700 dark:text-sky-400">{{ cur.input[activePos] }}</b>
         (posición {{ activePos + 1 }}) pasa a la posición
-        <b class="text-emerald-600 dark:text-emerald-400">{{
+        <b class="text-emerald-700 dark:text-emerald-400">{{
           dest[activePos]! + 1
         }}</b
         >.
       </p>
-      <p v-else class="mt-2 text-center text-sm text-slate-400">
+      <p v-else class="mt-2 text-center text-sm text-slate-600 dark:text-slate-400">
         Pasa el cursor sobre una letra de arriba para resaltar su recorrido.
       </p>
 
-      <h4 class="mb-2 mt-5 text-sm font-semibold text-slate-500">
+      <h4 class="mb-2 mt-5 text-sm font-semibold text-slate-600 dark:text-slate-400">
         Todos los bloques
       </h4>
       <div class="flex flex-wrap gap-2">
@@ -438,11 +438,11 @@ const badge =
           @mouseleave="hoverBlock = null"
           @click="pinned = i"
         >
-          <span class="font-bold text-sky-600 dark:text-sky-400">{{
+          <span class="font-bold text-sky-700 dark:text-sky-400">{{
             b.input.join('')
           }}</span>
-          <span class="mx-1 text-amber-500">→</span>
-          <span class="font-bold text-emerald-600 dark:text-emerald-400">{{
+          <span class="mx-1 text-amber-700 dark:text-amber-400">→</span>
+          <span class="font-bold text-emerald-700 dark:text-emerald-400">{{
             b.output.join('')
           }}</span>
         </button>

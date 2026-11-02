@@ -80,7 +80,7 @@ function cellClass(row: number, column: number) {
           class="rounded-xl border border-violet-200 bg-violet-50 p-4 dark:border-violet-800 dark:bg-violet-500/10"
         >
           <label for="playfair-key" class="lab-label"
-            ><span class="lab-number bg-violet-500">1</span> Palabra
+            ><span class="lab-number bg-violet-600">1</span> Palabra
             clave</label
           >
           <input
@@ -100,7 +100,7 @@ function cellClass(row: number, column: number) {
           </p>
         </div>
         <label for="playfair-input" class="lab-label"
-          ><span class="lab-number bg-sky-500">2</span> Texto cifrado</label
+          ><span class="lab-number bg-sky-700">2</span> Texto cifrado</label
         >
         <textarea
           id="playfair-input"
@@ -123,7 +123,7 @@ function cellClass(row: number, column: number) {
         </p>
         <div class="flex flex-wrap items-center justify-between gap-2">
           <label for="playfair-output" class="lab-label"
-            ><span class="lab-number bg-emerald-500">3</span> Texto
+            ><span class="lab-number bg-emerald-700">3</span> Texto
             recuperado</label
           >
           <button class="lab-button" :disabled="!output" @click="copy">
@@ -147,7 +147,7 @@ function cellClass(row: number, column: number) {
       </div>
       <div class="space-y-4">
         <h3 class="lab-label">
-          <span class="lab-number bg-indigo-500">4</span> Explora la cuadrícula
+          <span class="lab-number bg-indigo-600">4</span> Explora la cuadrícula
         </h3>
         <table
           v-if="square.length"
@@ -161,7 +161,7 @@ function cellClass(row: number, column: number) {
                 v-for="c in 5"
                 :key="c"
                 scope="col"
-                class="text-xs text-slate-500"
+                class="text-xs text-slate-600 dark:text-slate-400"
               >
                 {{ c }}
               </th>
@@ -169,7 +169,7 @@ function cellClass(row: number, column: number) {
           </thead>
           <tbody>
             <tr v-for="(row, r) in square" :key="r">
-              <th scope="row" class="pr-1 text-xs text-slate-500">
+              <th scope="row" class="pr-1 text-xs text-slate-600 dark:text-slate-400">
                 {{ r + 1 }}
               </th>
               <td
@@ -183,7 +183,7 @@ function cellClass(row: number, column: number) {
             </tr>
           </tbody>
         </table>
-        <p v-else class="text-sm text-slate-500">
+        <p v-else class="text-sm text-slate-600 dark:text-slate-400">
           Escribe una clave con letras para construir la cuadrícula.
         </p>
         <p class="text-center text-xs">
@@ -215,7 +215,7 @@ function cellClass(row: number, column: number) {
               {{ current.to[i].column + 1 }})
             </li>
           </ol>
-          <p class="mt-2 text-xs text-slate-500">
+          <p class="mt-2 text-xs text-slate-600 dark:text-slate-400">
             Coordenadas: (fila, columna), desde 1.
           </p>
         </div>
@@ -240,7 +240,7 @@ function cellClass(row: number, column: number) {
           :aria-pressed="selected === i"
           @click="selected = i"
         >
-          <span class="mr-2 text-xs text-slate-500">{{ i + 1 }}</span
+          <span class="mr-2 text-xs text-slate-600 dark:text-slate-400">{{ i + 1 }}</span
           ><span class="text-sky-700 dark:text-sky-300">{{ step.input }}</span>
           →
           <span class="text-emerald-700 dark:text-emerald-300">{{

@@ -94,7 +94,7 @@ const formatMatrix = (matrix: number[][]) =>
         class="space-y-4 rounded-xl border border-teal-200 bg-teal-50 p-4 dark:border-teal-800 dark:bg-teal-500/10"
       >
         <label for="hill-size" class="lab-label"
-          ><span class="lab-number bg-teal-500">1</span> Tamaño y clave K</label
+          ><span class="lab-number bg-teal-700">1</span> Tamaño y clave K</label
         >
         <select id="hill-size" v-model="size" class="lab-field">
           <option :value="2">2 × 2 · bloques de 2 letras</option>
@@ -167,7 +167,7 @@ const formatMatrix = (matrix: number[][]) =>
       </div>
       <div class="space-y-4">
         <label for="hill-input" class="lab-label"
-          ><span class="lab-number bg-sky-500">2</span>
+          ><span class="lab-number bg-sky-700">2</span>
           {{ mode === 'cifrar' ? 'Texto plano' : 'Texto cifrado' }}</label
         >
         <textarea
@@ -205,7 +205,7 @@ const formatMatrix = (matrix: number[][]) =>
         </div>
         <div class="flex flex-wrap items-center justify-between gap-2">
           <label for="hill-output" class="lab-label"
-            ><span class="lab-number bg-emerald-500">3</span>
+            ><span class="lab-number bg-emerald-700">3</span>
             {{
               mode === 'cifrar' ? 'Texto cifrado' : 'Texto recuperado'
             }}</label
@@ -228,7 +228,7 @@ const formatMatrix = (matrix: number[][]) =>
     </div>
     <div class="border-t border-slate-200 p-4 sm:p-6 dark:border-slate-800">
       <h3 class="lab-label">
-        <span class="lab-number bg-indigo-500">4</span> Sigue el cálculo por
+        <span class="lab-number bg-indigo-600">4</span> Sigue el cálculo por
         bloques
       </h3>
       <div
@@ -254,7 +254,7 @@ const formatMatrix = (matrix: number[][]) =>
             :aria-pressed="selected === i"
             @click="selected = i"
           >
-            <span class="mr-2 text-xs text-slate-500">{{ i + 1 }}</span
+            <span class="mr-2 text-xs text-slate-600 dark:text-slate-400">{{ i + 1 }}</span
             ><span class="text-sky-700 dark:text-sky-300">{{
               block.input
             }}</span>
@@ -320,7 +320,7 @@ const formatMatrix = (matrix: number[][]) =>
           </ol>
         </div>
       </template>
-      <p v-else class="text-sm text-slate-500">
+      <p v-else class="text-sm text-slate-600 dark:text-slate-400">
         {{
           result.ok
             ? 'Escribe un mensaje para explorar sus bloques.'

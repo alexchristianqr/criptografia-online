@@ -23,7 +23,7 @@ const restore = () => {
     <PlayfairPlayground />
     <div class="space-y-2">
       <p
-        class="px-1 text-xs font-semibold uppercase tracking-wide text-slate-400"
+        class="px-1 text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-slate-400"
       >
         Material de apoyo
       </p>
@@ -78,7 +78,7 @@ const restore = () => {
         </button>
         <p
           v-if="!practice.ok"
-          class="text-sm text-rose-600 dark:text-rose-400"
+          class="text-sm text-rose-700 dark:text-rose-400"
           role="alert"
         >
           {{ practice.error }}
@@ -120,12 +120,12 @@ const restore = () => {
                 :key="i"
                 class="border-t border-slate-200 dark:border-slate-700"
               >
-                <td class="p-2 font-mono text-sky-600 dark:text-sky-400">
+                <td class="p-2 font-mono text-sky-700 dark:text-sky-400">
                   {{ step.input }}
                 </td>
                 <td class="p-2">{{ rules[step.rule] }}</td>
                 <td
-                  class="p-2 font-mono font-bold text-emerald-600 dark:text-emerald-400"
+                  class="p-2 font-mono font-bold text-emerald-700 dark:text-emerald-400"
                 >
                   {{ step.output }}
                 </td>
@@ -144,7 +144,7 @@ const restore = () => {
               :href="source.url"
               target="_blank"
               rel="noopener noreferrer"
-              class="text-brand-600 underline dark:text-brand-500"
+              class="text-brand-600 underline dark:text-indigo-400"
               >{{ source.title }}</a
             >
           </li>

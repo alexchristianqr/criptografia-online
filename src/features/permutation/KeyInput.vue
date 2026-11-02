@@ -32,7 +32,7 @@ function onInput() {
   <label class="block">
     <span class="mb-1 block font-semibold"
       >Escribe la clave
-      <span class="text-sm font-normal text-slate-500"
+      <span class="text-sm font-normal text-slate-600 dark:text-slate-400"
         >(base 1, separada por espacios o comas)</span
       ></span
     >
@@ -54,7 +54,7 @@ function onInput() {
     />
     <span
       v-if="error"
-      class="mt-1 block text-sm text-rose-600 dark:text-rose-400"
+      class="mt-1 block text-sm text-rose-700 dark:text-rose-400"
       role="alert"
       >{{ error }} Se sigue usando la última clave válida.</span
     >

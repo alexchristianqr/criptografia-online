@@ -32,7 +32,7 @@ const restore = () => {
     <HillPlayground />
     <div class="space-y-2">
       <p
-        class="px-1 text-xs font-semibold uppercase tracking-wide text-slate-400"
+        class="px-1 text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-slate-400"
       >
         Material de apoyo
       </p>
@@ -68,7 +68,7 @@ const restore = () => {
           <label class="block">
             <span class="mb-1 block font-semibold"
               >Clave K
-              <span class="text-sm font-normal text-slate-500"
+              <span class="text-sm font-normal text-slate-600 dark:text-slate-400"
                 >(por filas, 0–25: 4 números = 2 × 2, 9 = 3 × 3)</span
               ></span
             >
@@ -91,7 +91,7 @@ const restore = () => {
         </button>
         <p
           v-if="!practice.ok"
-          class="text-sm text-rose-600 dark:text-rose-400"
+          class="text-sm text-rose-700 dark:text-rose-400"
           role="alert"
         >
           {{ practice.error }}
@@ -183,7 +183,7 @@ const restore = () => {
               :href="source.url"
               target="_blank"
               rel="noopener noreferrer"
-              class="text-brand-600 underline dark:text-brand-500"
+              class="text-brand-600 underline dark:text-indigo-400"
               >{{ source.title }}</a
             >
           </li>

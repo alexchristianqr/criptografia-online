@@ -9,7 +9,7 @@ import { example, source, theory } from './content';
     <SeriesPlayground />
     <div class="space-y-2">
       <p
-        class="px-1 text-xs font-semibold uppercase tracking-wide text-slate-400"
+        class="px-1 text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-slate-400"
       >
         Material de apoyo
       </p>
@@ -50,7 +50,7 @@ import { example, source, theory } from './content';
             :href="source.url"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-brand-600 underline dark:text-brand-500"
+            class="text-brand-600 underline dark:text-indigo-400"
             >{{ source.title }}</a
           >
         </p>

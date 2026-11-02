@@ -66,7 +66,7 @@ const {
         class="min-w-0 space-y-4 rounded-xl border border-orange-200 bg-orange-50 p-4 dark:border-orange-800 dark:bg-orange-500/10"
       >
         <h3 class="lab-label">
-          <span class="lab-number bg-orange-500">1</span> Define el recorrido
+          <span class="lab-number bg-orange-700">1</span> Define el recorrido
         </h3>
         <p class="text-xs text-slate-600 dark:text-slate-400">
           Convención del curso: la regla de primos incluye 1 para coincidir con
@@ -82,7 +82,7 @@ const {
       </div>
       <div class="min-w-0 space-y-4">
         <label :for="`${id}-input`" class="lab-label"
-          ><span class="lab-number bg-sky-500">2</span>
+          ><span class="lab-number bg-sky-700">2</span>
           {{ mode === 'cifrar' ? 'Texto plano' : 'Texto cifrado' }}</label
         >
         <textarea
@@ -111,7 +111,7 @@ const {
         </div>
         <div class="flex flex-wrap items-center justify-between gap-2">
           <label :for="`${id}-output`" class="lab-label"
-            ><span class="lab-number bg-emerald-500">3</span>
+            ><span class="lab-number bg-emerald-700">3</span>
             {{
               mode === 'cifrar' ? 'Texto cifrado' : 'Texto recuperado'
             }}</label
@@ -159,7 +159,7 @@ const {
       class="space-y-4 border-t border-slate-200 p-4 sm:p-6 dark:border-slate-800"
     >
       <h3 class="lab-label">
-        <span class="lab-number bg-violet-500">4</span>
+        <span class="lab-number bg-violet-600">4</span>
         {{
           practice
             ? 'Resolución paso a paso'

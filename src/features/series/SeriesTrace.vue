@@ -159,7 +159,7 @@ const positions = (values: number[]) =>
             :aria-pressed="selectedLetter === step.cipherPosition"
             @click="pick(step)"
           >
-            <span class="text-[10px] text-slate-500">{{
+            <span class="text-[10px] text-slate-600 dark:text-slate-400">{{
               row === 'plano' ? step.plainPosition : step.cipherPosition
             }}</span
             ><b
@@ -190,7 +190,7 @@ const positions = (values: number[]) =>
         >
       </p>
     </div>
-    <p v-else class="text-sm text-slate-500">
+    <p v-else class="text-sm text-slate-600 dark:text-slate-400">
       El mensaje está vacío. Escribe un texto para explorar sus posiciones.
     </p>
   </div>

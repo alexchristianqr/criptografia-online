@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Collapsible from '../../components/ui/Collapsible.vue'
-import { theory } from './content'
+import Collapsible from '../../components/ui/Collapsible.vue';
+import { theory } from './content';
 </script>
 
 <template>

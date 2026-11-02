@@ -131,7 +131,7 @@ function move(index: number, offset: number) {
         @click="drafts = [...drafts, { kind: 'impares', value: '' }]"
       >
         ＋ Añadir serie</button
-      ><span class="text-xs text-slate-500"
+      ><span class="text-xs text-slate-600 dark:text-slate-400"
         >{{ drafts.length }} / {{ MAX_SERIES_RULES }} reglas</span
       >
     </div>

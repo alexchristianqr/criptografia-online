@@ -31,7 +31,7 @@ const steps = computed(() => practiceSteps(key.value, inverse(key.value)));
     <PermutationPlayground />
     <div class="space-y-2">
       <p
-        class="px-1 text-xs font-semibold uppercase tracking-wide text-slate-400"
+        class="px-1 text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-slate-400"
       >
         Material de apoyo
       </p>
@@ -45,7 +45,7 @@ const steps = computed(() => practiceSteps(key.value, inverse(key.value)));
             definition.decrypt
           }}</code>
         </p>
-        <p class="text-xs text-slate-500">{{ definition.legend }}</p>
+        <p class="text-xs text-slate-600 dark:text-slate-400">{{ definition.legend }}</p>
       </Collapsible>
       <Collapsible title="Teoría en puntos" icon="📌">
         <ul class="list-disc space-y-1 pl-5">
@@ -90,7 +90,7 @@ const steps = computed(() => practiceSteps(key.value, inverse(key.value)));
         </ol>
         <div class="overflow-x-auto">
           <table class="w-full text-center font-mono text-sm">
-            <thead class="text-slate-500">
+            <thead class="text-slate-600 dark:text-slate-400">
               <tr>
                 <th class="p-1">Bloque</th>
                 <th>Entrada</th>
@@ -104,10 +104,10 @@ const steps = computed(() => practiceSteps(key.value, inverse(key.value)));
                 class="border-t border-slate-100 dark:border-slate-800"
               >
                 <td class="p-1">{{ i + 1 }}</td>
-                <td class="text-sky-600 dark:text-sky-400">
+                <td class="text-sky-700 dark:text-sky-400">
                   {{ b.input.join(' ') }}
                 </td>
-                <td class="font-bold text-emerald-600 dark:text-emerald-400">
+                <td class="font-bold text-emerald-700 dark:text-emerald-400">
                   {{ b.output.join(' ') }}
                 </td>
               </tr>
