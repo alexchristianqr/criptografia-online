@@ -25,6 +25,9 @@ html.dark {
 
 /* Controles compartidos por los laboratorios de sustitución por bloques. */
 @layer components {
+  .pager-link {
+    @apply flex flex-col gap-0.5 rounded-xl border border-slate-200 px-4 py-3 transition hover:border-brand-500 hover:bg-brand-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 dark:border-slate-700 dark:hover:bg-brand-500/15;
+  }
   .cipher-lab {
     @apply overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900;
   }
