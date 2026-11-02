@@ -57,5 +57,11 @@ export const modules: CourseModule[] = [
     subtitle: 'Bloques y matrices módulo 26',
     ...lazy(() => import('./features/hill/HillPage.vue')),
   },
+  {
+    id: 'rsa',
+    title: 'RSA',
+    subtitle: 'Cifrado asimétrico y firma con hash',
+    ...lazy(() => import('./features/rsa/RsaPage.vue')),
+  },
   { id: 'atbash', title: 'Atbash', subtitle: 'Alfabeto invertido' },
 ];

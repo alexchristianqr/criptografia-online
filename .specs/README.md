@@ -32,3 +32,4 @@ Aquí vive toda la documentación que define el producto. **Se escribe antes de 
 | [hill](features/hill/spec.md) | implementada |
 | [series-transposition](features/series-transposition/spec.md) | implementada |
 | [ux-shell](features/ux-shell/spec.md) | implementada |
+| [rsa](features/rsa/spec.md) | implementada |
